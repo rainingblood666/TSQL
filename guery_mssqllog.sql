@@ -1,4 +1,4 @@
-/* This is example how to query datetime of data changes, if audit routine wasn't set*/
+/* This is example how to query datetime of data changes, using sql server transaction log, if audit routine wasn't set*/
 
 USE [AdventureWorksDW2017]
 GO
