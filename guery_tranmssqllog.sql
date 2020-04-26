@@ -30,5 +30,5 @@ WITH main as(
     SELECT PAGE,[Transaction ID], min([Begin Time]),min([End Time]),
     min(l1_uname),min(l2_tname)
     FROM tlog
---	WHERE [Transaction SID]=SUSER_SID('DESKTOP-N6PGU2R\agnka')
+--	WHERE [Transaction SID]=SUSER_SID('DESKTOP-PC\DEMO_USER')
     GROUP BY [Transaction ID],page
