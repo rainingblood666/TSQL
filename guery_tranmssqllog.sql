@@ -8,7 +8,7 @@
     WHERE FinanceKey=1
     GO
 
-    WITH main as(   
+WITH main as(   
         SELECT 
         replace(replace(sys.fn_PhysLocFormatter (%%physloc%%),')','')
         ,'(','') page,
@@ -18,7 +18,8 @@
             tlog as ( 
         SELECT page, l2.[Begin Time],L2.[End Time],
         l1.AllocUnitName l1_uname, l2.[Transaction Name] l2_tname,
-        l1.[Transaction ID]
+        l1.[Transaction ID],
+		l2.[Transaction SID]
         FROM main
     JOIN
     sys.fn_dblog(NULL,NULL) l1 on PATINDEX('%'+main.page+'%',
@@ -29,4 +30,5 @@
     SELECT PAGE,[Transaction ID], min([Begin Time]),min([End Time]),
     min(l1_uname),min(l2_tname)
     FROM tlog
+--	WHERE [Transaction SID]=SUSER_SID('DESKTOP-N6PGU2R\agnka')
     GROUP BY [Transaction ID],page
